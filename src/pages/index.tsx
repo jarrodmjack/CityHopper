@@ -1,7 +1,8 @@
 import { useUser } from "@clerk/nextjs";
 import { type NextPage } from "next";
 import Head from "next/head";
-import { RouterOutputs, api } from "~/utils/api";
+import { api } from "~/utils/api";
+import { type RouterOutputs } from "~/utils/api";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";
@@ -9,9 +10,8 @@ dayjs.extend(relativeTime);
 
 const CreatePostWizard = () => {
   const { user } = useUser();
-  console.log(user);
   if (!user) return null;
-
+  console.log('user: ', user)
   return (
     <div className="flex w-full gap-4">
       <Image
