@@ -6,7 +6,7 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 const filterUserForClient = (user: User) => {
   return {
     id: user.id,
-    username: user.username ? user.username : user.firstName,
+    username: user.username || user.firstName || 'bruh',
     profilePicture: user.profileImageUrl,
   };
 };
@@ -25,7 +25,7 @@ export const postsRouter = createTRPCRouter({
 
     return posts.map((post) => {
       const author = users.find((user) => user.id === post.authorId);
-      if (!author) {
+      if (!author || author.username) {
         console.error("AUTHOR NOT FOUND", post);
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
