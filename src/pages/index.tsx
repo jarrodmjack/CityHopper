@@ -85,7 +85,7 @@ const Home: NextPage = () => {
             {user.isSignedIn && <CreatePostWizard />}
           </div>
           <div className="flex flex-col">
-            {[...data!].map((fullPost) => (
+            {[...data].map((fullPost) => (
               <PostView key={fullPost.post.id} {...fullPost} />
             ))}
           </div>
