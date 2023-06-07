@@ -12,9 +12,9 @@ dayjs.extend(relativeTime);
 
 const CreatePostWizard = () => {
   const { user } = useUser();
-  if (!user) return null;
-
   const [input, setInput] = useState("");
+
+  if (!user) return null;
 
   const ctx = api.useContext()
 
