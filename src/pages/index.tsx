@@ -7,12 +7,24 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";
 import LoadingPage from "~/components/loading/LoadingPage";
+import { useState } from "react";
 dayjs.extend(relativeTime);
 
 const CreatePostWizard = () => {
   const { user } = useUser();
   if (!user) return null;
-  console.log("user: ", user);
+
+  const [input, setInput] = useState("");
+
+  const ctx = api.useContext()
+
+  const { mutate, isLoading: isPosting } = api.posts.create.useMutation({
+    onSuccess: () => {
+      setInput('')
+      void ctx.posts.getAll.invalidate()
+    }
+  });
+
   return (
     <div className="flex w-full gap-4">
       <Image
@@ -25,12 +37,18 @@ const CreatePostWizard = () => {
       <input
         placeholder="Type some emojis"
         className="grow bg-transparent outline-none"
+        type="text"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        disabled={isPosting}
       />
+      <button onClick={() => mutate({content: input})}>Post</button>
     </div>
   );
 };
 
 type PostWithUser = RouterOutputs["posts"]["getAll"][number];
+
 const PostView = (props: PostWithUser) => {
   const { post, author } = props;
   return (
@@ -64,7 +82,7 @@ const Feed = () => {
 
   return (
     <div className="flex flex-col">
-      {[...data].map((fullPost) => (
+      {data.map((fullPost) => (
         <PostView key={fullPost.post.id} {...fullPost} />
       ))}
     </div>
