@@ -3,7 +3,29 @@
 @tailwind utilities;
 
 body {
-    @apply bg-black text-slate-100;
+  @apply bg-black text-slate-100;
 
-    overscroll-behavior: none;
+  overscroll-behavior: none;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  z-index: 1;
+}
+
+*::-webkit-scrollbar-track {
+  background: #4f4f4f;
+  z-index: 30;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #344b4f;
+  border-radius: 10px;
 }
