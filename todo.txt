@@ -1,0 +1,6 @@
+Finish header
+
+Add form to collect trip data:
+    Add departure location/return location (airport code + city name)
+    Add date range picker for departure/return dates
+
