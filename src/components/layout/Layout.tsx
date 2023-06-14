@@ -15,7 +15,7 @@ const Layout = (props: PropsWithChildren) => {
           <div>
             <h1 className="text-3xl">
               {/* LOGO will go beside app name */}
-              FarePulse
+              CityHopper
             </h1>
           </div>
           <div className="flex gap-4 items-center">

@@ -1,16 +1,21 @@
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { type NextPage } from "next";
-import { api } from "~/utils/api";
+// import { api } from "~/utils/api";
 
-import Image from "next/image";
-import LoadingPage from "~/components/loading/LoadingPage";
-import { useState } from "react";
-import toast from "react-hot-toast";
-import LoadingSpinner from "~/components/loading/LoadingSpinner";
-import ProfilePageLayout from "~/components/layout/ProfileLayout";
-import PostView from "~/components/posts/PostView";
+// import Image from "next/image";
+// import LoadingPage from "~/components/loading/LoadingPage";
+// import { useState } from "react";
+// import toast from "react-hot-toast";
+// import LoadingSpinner from "~/components/loading/LoadingSpinner";
+// import PostView from "~/components/posts/PostView";
 import Layout from "~/components/layout/Layout";
-import FlightSearchForm from "~/components/forms/FlightSearchForm";
+import PropertySearchForm from "~/components/forms/PropertySearchForm";
+import { PropertySearchFormOptions } from "~/types/PropertySearchFormTypes";
+import { toast } from "react-hot-toast";
+import { api } from "~/utils/api";
+import { fetchMatchingProperties } from "~/utils/properties/fetchMatchingProperties";
+import { useState } from "react";
+import PropertiesGrid from "~/components/layout/PropertiesGrid";
 
 // const CreatePostWizard = () => {
 //   const { user } = useUser();
@@ -94,7 +99,11 @@ import FlightSearchForm from "~/components/forms/FlightSearchForm";
 
 const Home: NextPage = () => {
   const { isLoaded: userLoaded, isSignedIn } = useUser();
-
+  const [currentMatchingProperties, setCurrentMatchingProperties] = useState(
+    []
+  );
+  const [searchedProperties, setSearchedProperties] = useState([]); // Using this, alongside location because I want to cache the data and do some sort of location filter in case they use the same location
+  const [currentLocation, setCurrentLocation] = useState(""); // Using this location because I will be caching the previously searched items on the frontend
   // Start fetching asap
   // api.posts.getAll.useQuery();
 
@@ -103,21 +112,35 @@ const Home: NextPage = () => {
     return <div />;
   }
 
+  const handleFindMatchingProperties = async (
+    options: PropertySearchFormOptions
+  ) => {
+    const matchingProperties = await fetchMatchingProperties(options);
+    setCurrentLocation(options.location);
+
+    if (matchingProperties) {
+      setCurrentMatchingProperties(matchingProperties);
+    } else {
+      toast.error("No matching properties were found");
+    }
+    console.log("foundProperties: ", matchingProperties);
+  };
+
   return (
     <Layout>
-      <div className="bg-green-950 text-slate-100 pt-8 pb-16 flex justify-center">
-        <FlightSearchForm />
-        {/* {!isSignedIn ? (
-          <div>
-            <SignInButton />
-          </div>
-        ) : (
-          <div>
-            <SignOutButton />
-          </div>
-        )} */}
-        {/* {isSignedIn && <CreatePostWizard />} */}
+      <div className="flex justify-center bg-green-950 pb-10 text-slate-100">
+        <PropertySearchForm
+          handleFindMatchingProperties={handleFindMatchingProperties}
+        />
       </div>
+      {currentMatchingProperties.length > 0 && (
+        <div>
+          <h2>
+            {currentMatchingProperties.length} options in <span className="capitalize">{currentLocation}</span>
+          </h2>
+          <PropertiesGrid properties={currentMatchingProperties} />
+        </div>
+      )}
     </Layout>
   );
 };
