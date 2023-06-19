@@ -13,16 +13,16 @@ body {
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 8px;
+  width: 12px;
   z-index: 1;
 }
 
 *::-webkit-scrollbar-track {
-  background: #4f4f4f;
+  background: #e3e2e2;
   z-index: 30;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #344b4f;
+  background-color: #2f5a3c;
   border-radius: 10px;
 }

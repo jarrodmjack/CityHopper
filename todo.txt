@@ -1,6 +1,9 @@
-Finish header
+Style grid cards (make property card component)
 
-Add form to collect trip data:
-    Add departure location/return location (airport code + city name)
-    Add date range picker for departure/return dates
-
+I would like to add a "propertySearch" that is linked to a user. Will just contain the search that they made so they can see what was included.
+I think it will look something like this:
+propertySearch {
+    userId,
+    foundLocations: [array of locations that they had previously found with their query(eg. Toronto, 2023-06-12, 2023-06-17, 2)]
+}
+I would then use these previously found searches in some sort of side-bar menu on the front page so they can click on it and bring these back up again

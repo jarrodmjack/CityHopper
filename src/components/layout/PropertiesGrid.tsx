@@ -1,23 +1,19 @@
-import Image from 'next/image'
-import React from 'react'
+import Image from "next/image";
+import React from "react";
+import PropertyGridCard from "../card/PropertyGridCard";
 
 type PropertiesGridProps = {
-    properties: any[]
-}
+  properties: any[];
+};
 
-const PropertiesGrid: React.FC<PropertiesGridProps> = ({properties}) => {
-
-
+const PropertiesGrid: React.FC<PropertiesGridProps> = ({ properties }) => {
   return (
-    <div>
-        {properties.map((property, i) => (
-            <div className=''>
-                <Image src={property.images[0]} alt={`host-thumbnail-${property.userId}`} width={128} height={128} />
-                {property.address}
-            </div>
-        ))}
+    <div className="mx-auto flex flex-wrap gap-4 justify-center">
+      {properties.map((property, i) => (
+        <PropertyGridCard property={property}  />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default PropertiesGrid
+export default PropertiesGrid;

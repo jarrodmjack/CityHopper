@@ -5,7 +5,6 @@ export const fetchMatchingProperties = async (
 ) => {
   const url = `https://airbnb13.p.rapidapi.com/search-location?location=${urlOptions.location}&checkin=${urlOptions.checkIn}&checkout=${urlOptions.checkOut}&adults=${urlOptions.numOfPeople}&children=0&infants=0&pets=0&page=1&currency=USD`;
 
-  console.log("incoming url for fetch: ", url);
   const options = {
     method: "GET",
     headers: {

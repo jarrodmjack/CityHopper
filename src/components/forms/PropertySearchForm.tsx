@@ -38,7 +38,7 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
       >
         <div className="flex flex-col rounded-lg bg-white px-10 py-4">
           <label htmlFor="location" className="font-semibold">
-            Location ( city/province/state )
+            Location ( City, Country )
           </label>
           <input
             onChange={(e) =>

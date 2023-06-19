@@ -16,6 +16,7 @@ import { api } from "~/utils/api";
 import { fetchMatchingProperties } from "~/utils/properties/fetchMatchingProperties";
 import { useState } from "react";
 import PropertiesGrid from "~/components/layout/PropertiesGrid";
+import LoadingSpinner from "~/components/loading/LoadingSpinner";
 
 // const CreatePostWizard = () => {
 //   const { user } = useUser();
@@ -104,10 +105,11 @@ const Home: NextPage = () => {
   );
   const [searchedProperties, setSearchedProperties] = useState([]); // Using this, alongside location because I want to cache the data and do some sort of location filter in case they use the same location
   const [currentLocation, setCurrentLocation] = useState(""); // Using this location because I will be caching the previously searched items on the frontend
+  const [isLoading, setIsLoading] = useState(false);
+
   // Start fetching asap
   // api.posts.getAll.useQuery();
 
-  // Return empty div if user isn't loaded yet
   if (!userLoaded) {
     return <div />;
   }
@@ -115,6 +117,7 @@ const Home: NextPage = () => {
   const handleFindMatchingProperties = async (
     options: PropertySearchFormOptions
   ) => {
+    setIsLoading(true);
     const matchingProperties = await fetchMatchingProperties(options);
     setCurrentLocation(options.location);
 
@@ -123,9 +126,20 @@ const Home: NextPage = () => {
     } else {
       toast.error("No matching properties were found");
     }
+    setIsLoading(false);
     console.log("foundProperties: ", matchingProperties);
   };
 
+  if (isLoading) {
+    return (
+      <Layout>
+        <div className="w-full h-screen flex items-center justify-center">
+          <LoadingSpinner size={96} />
+        </div>
+      </Layout>
+    );
+  }
+  console.log('matching properties: ', currentMatchingProperties)
   return (
     <Layout>
       <div className="flex justify-center bg-green-950 pb-10 text-slate-100">
@@ -136,7 +150,8 @@ const Home: NextPage = () => {
       {currentMatchingProperties.length > 0 && (
         <div>
           <h2>
-            {currentMatchingProperties.length} options in <span className="capitalize">{currentLocation}</span>
+            {currentMatchingProperties.length} options in{" "}
+            <span className="capitalize">{currentLocation}</span>
           </h2>
           <PropertiesGrid properties={currentMatchingProperties} />
         </div>
