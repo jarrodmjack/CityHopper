@@ -140,6 +140,7 @@ const Home: NextPage = () => {
     );
   }
   console.log('matching properties: ', currentMatchingProperties)
+
   return (
     <Layout>
       <div className="flex justify-center bg-green-950 pb-10 text-slate-100">
@@ -147,13 +148,17 @@ const Home: NextPage = () => {
           handleFindMatchingProperties={handleFindMatchingProperties}
         />
       </div>
-      {currentMatchingProperties.length > 0 && (
-        <div>
-          <h2>
-            {currentMatchingProperties.length} options in{" "}
+      {currentMatchingProperties.length > 0 ? (
+        <div className="flex flex-col gap-10 border-4 border-red-700 py-10">
+          <h2 className="text-xl font-bold lg:ml-40">
+            {currentMatchingProperties.length} listings in{" "}
             <span className="capitalize">{currentLocation}</span>
           </h2>
           <PropertiesGrid properties={currentMatchingProperties} />
+        </div>
+      ): (
+        <div className="flex justify-center items-center">
+          <h3 className="font-bold text-2xl mt-10">No matching properties found</h3>
         </div>
       )}
     </Layout>

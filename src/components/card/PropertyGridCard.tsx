@@ -10,7 +10,7 @@ const PropertyGridCard: React.FC<PropertyGridCardProps> = ({ property }) => {
   return (
     <div
       key={property.id}
-      className="flex max-w-sm flex-col justify-between rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800"
+      className="flex max-w-sm flex-col justify-between rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800 hover:opacity-90"
     >
       <a href={property.url ? property.url : "/404"} target="_blank">
         <img
