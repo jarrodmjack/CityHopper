@@ -143,12 +143,12 @@ const Home: NextPage = () => {
 
   return (
     <Layout>
-      <div className="flex justify-center bg-green-950 pb-10 text-slate-100">
+      <div className="flex justify-center bg-gray-900 pb-10 text-slate-100">
         <PropertySearchForm
           handleFindMatchingProperties={handleFindMatchingProperties}
         />
       </div>
-      {currentMatchingProperties.length > 0 ? (
+      {currentMatchingProperties.length > 0 && (
         <div className="flex flex-col gap-10 border-4 border-red-700 py-10">
           <h2 className="text-xl font-bold lg:ml-40">
             {currentMatchingProperties.length} listings in{" "}
@@ -156,11 +156,13 @@ const Home: NextPage = () => {
           </h2>
           <PropertiesGrid properties={currentMatchingProperties} />
         </div>
-      ): (
+      )}
+      {!currentMatchingProperties && (
         <div className="flex justify-center items-center">
           <h3 className="font-bold text-2xl mt-10">No matching properties found</h3>
         </div>
       )}
+        
     </Layout>
   );
 };

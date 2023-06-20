@@ -10,7 +10,7 @@ const PropertiesGrid: React.FC<PropertiesGridProps> = ({ properties }) => {
   return (
     <div className="flex flex-wrap gap-4 justify-center">
       {properties.map((property, i) => (
-        <PropertyGridCard property={property}  />
+        <PropertyGridCard key={property.id} property={property}  />
       ))}
     </div>
   );
