@@ -4,18 +4,35 @@ import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import { Toaster } from "react-hot-toast";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
+  const router = useRouter();
+  const isLandingPage = router.pathname === "/";
+  console.log("is landing page: ", isLandingPage);
   return (
-    <ClerkProvider {...pageProps}>
+    <>
       <Head>
         <title>CityHopper</title>
         <meta name="description" content="🐢" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Toaster position="top-right" />
-      <Component {...pageProps} />
-    </ClerkProvider>
+      {/* <ClerkProvider {...pageProps}>
+          <Toaster position="top-right" />
+          <Component {...pageProps} />
+        </ClerkProvider> */}
+      {!isLandingPage ? (
+        <ClerkProvider {...pageProps}>
+          <Toaster position="top-right" />
+          <Component {...pageProps} />
+        </ClerkProvider>
+      ) : (
+        <>
+          <Toaster position="top-right" />
+          <Component {...pageProps} />
+        </>
+      )}
+    </>
   );
 };
 
