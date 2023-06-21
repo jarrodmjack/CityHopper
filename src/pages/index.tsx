@@ -40,7 +40,9 @@ const Home: NextPage = () => {
   };
 
   return (
-      <LandingPage />
+      <Layout>
+        <LandingPage />
+      </Layout>
   );
 };
 
