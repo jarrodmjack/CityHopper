@@ -123,12 +123,9 @@ const Home: NextPage = () => {
     if (matchingProperties) {
       setCurrentMatchingProperties(matchingProperties);
     } else {
-    console.log('matching props: ', matchingProperties)
-
       toast.error("No matching properties were found");
     }
     setIsLoading(false);
-    console.log("foundProperties: ", matchingProperties);
   };
 
   if (isLoading) {
@@ -163,7 +160,6 @@ const Home: NextPage = () => {
           <h3 className="font-bold text-2xl mt-10">No matching properties found</h3>
         </div>
       )}
-        
     </Layout>
   );
 };
