@@ -91,7 +91,7 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
             onChange={(option) => console.log(option?.value)}
           />
         </div>
-        <button type="submit" className="ml-4 rounded-lg bg-emerald-700 px-4 py-6 text-slate-100">
+        <button type="submit" className="ml-4 rounded-lg bg-blue-700 hover:bg-blue-900 px-4 py-6 text-slate-100">
           Search
         </button>
       </form>

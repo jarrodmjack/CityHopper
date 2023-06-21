@@ -16,10 +16,10 @@ const PropertyGridCard: React.FC<PropertyGridCardProps> = ({ property }) => {
           alt={`host-property-image-${property.userId}`}
         />
       </a>
-      <div className="flex h-[280px] flex-col justify-between px-4 py-4">
+      <div className="flex h-[250px] flex-col justify-between px-4 py-4">
         <div className="flex flex-col gap-2">
           <div className="flex justify-between">
-            <span className="text-xl font-bold">{property.name}</span>
+            <span className="font-bold">{property.name}</span>
             {property.rating ? (
               <span className="ml-4 mt-2 flex items-center gap-2 self-start text-sm">
                 <FaStar />
@@ -54,7 +54,7 @@ const PropertyGridCard: React.FC<PropertyGridCardProps> = ({ property }) => {
           <a
             href={property.deeplink ? property.deeplink : property.url}
             target="_blank"
-            className="inline-flex items-center self-start rounded-lg bg-green-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-emerald-600 dark:hover:bg-green-700 dark:focus:ring-blue-800"
+            className="inline-flex items-center self-start rounded-lg bg-green-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-800 dark:focus:ring-blue-800"
           >
             Book Now
           </a>

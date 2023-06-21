@@ -148,8 +148,8 @@ const Home: NextPage = () => {
       </div>
       {currentMatchingProperties.length > 0 && (
         <div className="flex flex-col gap-10 py-10">
-          <h2 className="text-xl font-bold lg:ml-40">
-            {currentMatchingProperties.length} listings in{" "}
+          <h2 className="text-xl font-bold lg:ml-40 text-slate-100">
+            {currentMatchingProperties.length} options in{" "}
             <span className="capitalize">{currentLocation}</span>
           </h2>
           <PropertiesGrid properties={currentMatchingProperties} />
