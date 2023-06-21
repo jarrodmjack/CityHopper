@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 body {
+  @apply bg-gray-900
 }
 
 /* ===== Scrollbar CSS ===== */

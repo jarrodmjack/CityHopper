@@ -8,7 +8,7 @@ type PropertiesGridProps = {
 
 const PropertiesGrid: React.FC<PropertiesGridProps> = ({ properties }) => {
   return (
-    <div className="flex flex-wrap gap-4 justify-center">
+    <div className="flex flex-wrap gap-10 justify-center">
       {properties.map((property, i) => (
         <PropertyGridCard key={property.id} property={property}  />
       ))}

@@ -120,10 +120,11 @@ const Home: NextPage = () => {
     setIsLoading(true);
     const matchingProperties = await fetchMatchingProperties(options);
     setCurrentLocation(options.location);
-
     if (matchingProperties) {
       setCurrentMatchingProperties(matchingProperties);
     } else {
+    console.log('matching props: ', matchingProperties)
+
       toast.error("No matching properties were found");
     }
     setIsLoading(false);
@@ -149,7 +150,7 @@ const Home: NextPage = () => {
         />
       </div>
       {currentMatchingProperties.length > 0 && (
-        <div className="flex flex-col gap-10 border-4 border-red-700 py-10">
+        <div className="flex flex-col gap-10 py-10">
           <h2 className="text-xl font-bold lg:ml-40">
             {currentMatchingProperties.length} listings in{" "}
             <span className="capitalize">{currentLocation}</span>
