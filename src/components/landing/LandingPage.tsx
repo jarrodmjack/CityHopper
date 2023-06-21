@@ -60,13 +60,7 @@ const LandingPage = () => {
         <section className="py-8">
           <h2 className="text-2xl font-bold">Start Exploring Now</h2>
           <form className="mt-4 flex">
-            {/* <button
-              type="submit"
-              className="rounded-md bg-blue-500 px-4 py-2 text-white transition-colors duration-300 hover:bg-blue-600"
-            >
-              Sign up
-            </button> */}
-            {/* <SignUpButton /> */}
+            <SignUpButton />
           </form>
         </section>
       </main>
