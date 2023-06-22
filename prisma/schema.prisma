@@ -20,11 +20,11 @@ model Post {
     @@index([authorId])
 }
 
-model SearchedFlight {
+model PropertySearch {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
-    travelFromDate DateTime @db.DateTime()
-    travelToDate DateTime @db.DateTime()
-    content String @db.VarChar(255)
     userId String
+    properties String
+
+    @@index([userId])
 }

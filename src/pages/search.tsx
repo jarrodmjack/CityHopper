@@ -98,8 +98,10 @@ import LoadingSpinner from "~/components/loading/LoadingSpinner";
 //   );
 // };
 
+
 const Home: NextPage = () => {
-  const { isLoaded: userLoaded, isSignedIn } = useUser();
+  const { user, isLoaded: userLoaded, isSignedIn } = useUser();
+  console.log('user: ', user)
   const [currentMatchingProperties, setCurrentMatchingProperties] = useState(
     []
   );

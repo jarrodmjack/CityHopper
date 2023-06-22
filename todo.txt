@@ -1,9 +1,1 @@
-Style grid cards (make property card component)
-
-I would like to add a "propertySearch" that is linked to a user. Will just contain the search that they made so they can see what was included.
-I think it will look something like this:
-propertySearch {
-    userId,
-    foundLocations: [array of locations that they had previously found with their query(eg. Toronto, 2023-06-12, 2023-06-17, 2)]
-}
-I would then use these previously found searches in some sort of side-bar menu on the front page so they can click on it and bring these back up again
+Continue working on "propertySearch" stuff. Left off trying to figure out why no searches are being sent back relating to the specified user id
