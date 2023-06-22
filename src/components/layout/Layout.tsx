@@ -1,4 +1,4 @@
-import { SignOutButton, useUser } from "@clerk/nextjs";
+import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import type { PropsWithChildren } from "react";
 
 const Layout = (props: PropsWithChildren) => {
@@ -9,7 +9,7 @@ const Layout = (props: PropsWithChildren) => {
   }
 
   return (
-    <main className="flex flex-col min-h-screen">
+    <main className="flex min-h-screen flex-col">
       <header className="justify-between bg-gray-900 py-16 text-slate-100">
         <div className="container mx-auto flex justify-between px-40">
           <div>
@@ -22,7 +22,7 @@ const Layout = (props: PropsWithChildren) => {
         </div>
       </header>
       <div className="flex-grow">{props.children}</div>
-      <footer className="bg-white shadow dark:bg-gray-900 justify-self-end">
+      <footer className="justify-self-end bg-white shadow dark:bg-gray-900">
         <div className="mx-auto w-full max-w-screen-xl p-4 md:py-8">
           <div className="sm:flex sm:items-center sm:justify-between">
             <a
