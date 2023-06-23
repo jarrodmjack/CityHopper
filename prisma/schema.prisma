@@ -24,7 +24,7 @@ model PropertySearch {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
     userId String
-    properties String
+    properties Json?
 
     @@index([userId])
 }
