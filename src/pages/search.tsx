@@ -12,24 +12,21 @@ import LoadingSpinner from "~/components/loading/LoadingSpinner";
 
 const Home: NextPage = () => {
   const { user, isLoaded: userLoaded, isSignedIn } = useUser();
-  console.log("user: ", user);
   const [currentMatchingProperties, setCurrentMatchingProperties] = useState(
     []
   );
 
   const [currentLocation, setCurrentLocation] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [previousPropertySearches, setPreviousPropertySearches] = useState([]);
 
   const { data, isLoading: loadingProperties } =
     api.propertySearch.getPropertySearchesByUserId.useQuery({
-      userId: user?.id,
+      userId: user?.id || '',
     });
 
   const { mutate, isLoading: isCreating } =
     api.propertySearch.create.useMutation({
       onSuccess: () => {
-        console.log("hello");
         void ctx.posts.getAll.invalidate();
       },
     });
@@ -76,7 +73,6 @@ const Home: NextPage = () => {
       </Layout>
     );
   }
-  console.log("matching properties: ", currentMatchingProperties);
 
   return (
     <Layout

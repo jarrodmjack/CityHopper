@@ -8,8 +8,8 @@ export const fetchMatchingProperties = async (
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "391f14e221msh235d770daa9a498p13db86jsnabd9a7d6d730",
-      "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
+      'X-RapidAPI-Key': 'db3e8ae18bmshd7bb610557d438fp1e9721jsneadf0cccb21c',
+      'X-RapidAPI-Host': 'airbnb13.p.rapidapi.com'
     },
   };
 
