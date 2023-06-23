@@ -22,7 +22,7 @@ const Layout: React.FC<PropsWithChildren & LayoutOwnProps> = ({
   }
 
   return (
-    <main className="flex min-h-screen border-2 border-red-600">
+    <main className="flex min-h-screen">
       {format === "search" && (
         <SideBar><PreviousSearchSideBar handleShowPreviousSearch={handleShowPreviousSearch} previousSearches={data} /></SideBar>
       )}
