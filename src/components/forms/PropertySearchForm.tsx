@@ -1,7 +1,6 @@
 import { useUser } from "@clerk/nextjs";
 import React, { useState } from "react";
 import { PropertySearchFormOptions } from "~/types/PropertySearchFormTypes";
-import { api } from "~/utils/api";
 import Select from "react-select";
 
 type PropertySearchFormProps = {
@@ -16,13 +15,11 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
   if (!user) return null;
 
   const [options, setOptions] = useState({
-    location: '',
-    checkIn: '',
-    checkOut: '',
+    location: "",
+    checkIn: "",
+    checkOut: "",
     numOfPeople: 1,
   });
-
-  // const ctx = api.useContext(); TODO - ADD USERS SEARCH TO "PREVIOUS SEARCHED" which will be attached to the user
 
   return (
     <div>
@@ -34,7 +31,7 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
           e.preventDefault();
           handleFindMatchingProperties(options);
         }}
-        className="flex items-center gap-2 text-black"
+        className="text-black grid grid-cols-2 gap-2 lg:flex lg:items-center lg:gap-2"
       >
         <div className="flex flex-col rounded-lg bg-white px-10 py-4">
           <label htmlFor="location" className="font-semibold">
@@ -77,7 +74,7 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
             className="focus:outline-none"
           />
         </div>
-        <div className="flex flex-col rounded-lg bg-white px-10 py-4">
+        <div className="flex flex-col rounded-lg bg-white px-10 lg:py-2.5">
           <label htmlFor="numOfAdults" className="font-semibold">
             How many adults?
           </label>
@@ -91,7 +88,10 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
             onChange={(option) => console.log(option?.value)}
           />
         </div>
-        <button type="submit" className="ml-4 rounded-lg bg-blue-700 hover:bg-blue-900 px-4 py-6 text-slate-100">
+        <button
+          type="submit"
+          className="rounded-lg col-span-2 bg-blue-700 px-4 py-6 text-slate-100 hover:bg-blue-900 lg:ml-4"
+        >
           Search
         </button>
       </form>

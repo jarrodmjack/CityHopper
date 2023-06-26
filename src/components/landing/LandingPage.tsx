@@ -13,12 +13,9 @@ const LandingPage = () => {
 
   return (
     <main className="flex min-h-screen">
-      {/* {format === "search" && (
-    <SideBar><PreviousSearchSideBar handleShowPreviousSearch={handleShowPreviousSearch} previousSearches={data} /></SideBar>
-  )} */}
       <div className="mx-auto flex w-full flex-col">
         <header className="justify-between bg-gray-900 py-16 text-slate-100">
-          <div className="container mx-auto flex justify-between px-40">
+          <div className="container mx-auto flex justify-between px-10 md:px-40">
             <div>
               <h1 className="text-3xl">CityHopper</h1>
             </div>
@@ -30,7 +27,7 @@ const LandingPage = () => {
         </header>
         <div className="flex-grow">
           <main className="container mx-auto py-8 text-slate-100">
-            <section className="flex justify-between">
+            <section className="justify-between flex flex-col gap-10 md:flex-row">
               <section>
                 <section className="py-8">
                   <h2 className="text-2xl font-bold">
