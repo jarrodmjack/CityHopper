@@ -2,6 +2,7 @@ import { useUser } from "@clerk/nextjs";
 import React, { useState } from "react";
 import { PropertySearchFormOptions } from "~/types/PropertySearchFormTypes";
 import Select from "react-select";
+import { toast } from "react-hot-toast";
 
 type PropertySearchFormProps = {
   handleFindMatchingProperties: (options: PropertySearchFormOptions) => void;
@@ -13,7 +14,6 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
   const { user } = useUser();
 
   if (!user) return null;
-
   const [options, setOptions] = useState({
     location: "",
     checkIn: "",
@@ -31,7 +31,7 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
           e.preventDefault();
           handleFindMatchingProperties(options);
         }}
-        className="text-black grid grid-cols-2 gap-2 lg:flex lg:items-center lg:gap-2"
+        className="grid grid-cols-2 gap-2 text-black lg:flex lg:items-center lg:gap-2"
       >
         <div className="flex flex-col rounded-lg bg-white px-10 py-4">
           <label htmlFor="location" className="font-semibold">
@@ -46,6 +46,7 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
             id="location"
             type="text"
             className="focus:outline-none"
+            required={true}
           />
         </div>
         <div className="flex flex-col rounded-lg bg-white px-10 py-4">
@@ -53,12 +54,23 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
             Check-in date
           </label>
           <input
-            onChange={(e) =>
-              setOptions({ ...options, checkIn: e.target.value })
-            }
+            onChange={(e) => {
+              const todaysDate = new Date().toISOString().split("T")[0];
+              const selectedCheckInDate = e.target.value;
+
+              if (selectedCheckInDate < todaysDate!) {
+                toast.error(
+                  "Checkin date cannot be before todays date. Please select a different date"
+                );
+                setOptions({ ...options, checkIn: selectedCheckInDate });
+              } else {
+                setOptions({ ...options, checkIn: selectedCheckInDate });
+              }
+            }}
             id="checkInDate"
             type="date"
             className="focus:outline-none"
+            required={true}
           />
         </div>
         <div className="flex flex-col rounded-lg bg-white px-10 py-4">
@@ -72,6 +84,7 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
             id="checkOutDate"
             type="date"
             className="focus:outline-none"
+            required={true}
           />
         </div>
         <div className="flex flex-col rounded-lg bg-white px-10 lg:py-2.5">
@@ -79,6 +92,7 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
             How many adults?
           </label>
           <Select
+            required={true}
             options={[
               { value: 1, label: "1 person" },
               { value: 2, label: "2 people" },
@@ -90,7 +104,7 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
         </div>
         <button
           type="submit"
-          className="rounded-lg col-span-2 bg-blue-700 px-4 py-6 text-slate-100 hover:bg-blue-900 lg:ml-4"
+          className="col-span-2 rounded-lg bg-blue-700 px-4 py-6 text-slate-100 hover:bg-blue-900 lg:ml-4"
         >
           Search
         </button>
