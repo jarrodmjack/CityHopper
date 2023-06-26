@@ -99,7 +99,7 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
               { value: 3, label: "3 people" },
               { value: 4, label: "4 people" },
             ]}
-            onChange={(option) => console.log(option?.value)}
+            onChange={(option) => setOptions({...options, numOfPeople: option!.value})}
           />
         </div>
         <button

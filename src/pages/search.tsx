@@ -82,7 +82,7 @@ const Home: NextPage = () => {
       </Layout>
     );
   }
-  console.log("matching props: ", currentMatchingProperties);
+
   return (
     <Layout
       data={data}
