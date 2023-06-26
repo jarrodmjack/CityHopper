@@ -21,12 +21,12 @@ const PropertyGridCard: React.FC<PropertyGridCardProps> = ({ property }) => {
           <div className="flex justify-between">
             <span className="font-bold text-black">{property.name}</span>
             {property.rating ? (
-              <span className="ml-4 mt-2 flex items-center gap-2 self-start text-sm">
+              <span className="ml-4 mt-2 flex items-center gap-2 self-start text-sm text-black">
                 <FaStar />
                 {property.rating}
               </span>
             ) : (
-              <span className="ml-4 mt-2 flex items-center gap-2 self-start text-sm">
+              <span className="ml-4 mt-2 flex items-center gap-2 self-start text-sm text-black">
                 <FaStar />
                 N/A
               </span>
@@ -46,6 +46,9 @@ const PropertyGridCard: React.FC<PropertyGridCardProps> = ({ property }) => {
                 {amenity}
               </span>
             ))}
+        </div>
+        <div className="text-black">
+              <span>{property.address}</span>
         </div>
         <div className="flex items-center justify-between">
           <span className="font-semibold text-black">
