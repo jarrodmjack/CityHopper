@@ -23,7 +23,7 @@ const Layout: React.FC<PropsWithChildren & LayoutOwnProps> = ({
 
   return (
     <main className="flex min-h-screen">
-      {format === "search" && (
+      {format === "search" && data && (
         <SideBar><PreviousSearchSideBar handleShowPreviousSearch={handleShowPreviousSearch} previousSearches={data} /></SideBar>
       )}
       <div className="mx-auto flex flex-col w-full">
