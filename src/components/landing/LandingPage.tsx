@@ -111,7 +111,7 @@ const LandingPage = () => {
               )}
               {user && isSignedIn && (
                 <Link href="/search">
-                  <span>Start searching</span>
+                  <span className="cursor-pointer rounded-md bg-blue-600 px-3 py-2 hover:bg-blue-800">Start searching</span>
                 </Link>
               )}
             </section>
