@@ -35,7 +35,7 @@ const PreviousSearchSideBar: React.FC<PreviousSearchSideBarProps> = ({
           <span
             onClick={() => handleShowPreviousSearch(previousSearch.properties)}
             key={previousSearch.id}
-            className="mb-2 flex cursor-pointer items-center gap-2 rounded-lg hover:bg-slate-100 hover:bg-opacity-95"
+            className="mb-2 flex cursor-pointer items-center gap-2 p-2 rounded-lg hover:bg-slate-100 hover:text-black"
           >
             {previousSearch.properties[0].address}
           </span>
