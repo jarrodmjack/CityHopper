@@ -7,7 +7,7 @@ const SideBar = (props: PropsWithChildren) => {
   }
 
   return (
-    <div className="bg-gray-950 w-64 p-4 hidden md:block">
+    <div className="bg-gray-950 w-64 p-4 hidden md:block max-h-screen overflow-auto">
         {props.children}
     </div>
   )

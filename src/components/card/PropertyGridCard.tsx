@@ -16,7 +16,7 @@ const PropertyGridCard: React.FC<PropertyGridCardProps> = ({ property }) => {
           alt={`host-property-image-${property.userId}`}
         />
       </a>
-      <div className="flex h-[250px] flex-col justify-between px-4 py-4">
+      <div className="flex h-[280px] flex-col justify-between px-4 py-4">
         <div className="flex flex-col gap-2">
           <div className="flex justify-between">
             <span className="font-bold text-black">{property.name.length > 40 ? `${property.name.slice(0,40)}...` : property.name}</span>
