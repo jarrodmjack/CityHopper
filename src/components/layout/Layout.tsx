@@ -1,21 +1,29 @@
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
-import type { PropsWithChildren } from "react";
+import { useState, type PropsWithChildren } from "react";
 import PreviousSearchSideBar from "../sidebar/PreviousSearchSideBar";
 import SideBar from "../sidebar/SideBar";
+import MobileDropdown from "../dropdown/mobile/MobileDropdown";
+import { FaBars } from "react-icons/fa";
+import MobileDropdownOption from "../dropdown/mobile/MobileDropdownOption";
 
 type LayoutOwnProps = {
   data?: any;
   format: string;
-  handleShowPreviousSearch?: any
+  handleShowPreviousSearch?: any;
 };
 
 const Layout: React.FC<PropsWithChildren & LayoutOwnProps> = ({
   children,
   data,
   format,
-  handleShowPreviousSearch
+  handleShowPreviousSearch,
 }) => {
   const { isLoaded: userLoaded, isSignedIn } = useUser();
+  const [showDropDown, setShowDropDown] = useState(false);
+
+  const handleSetShowDropDown = () => {
+    setShowDropDown(!showDropDown);
+  };
 
   if (!userLoaded) {
     return <div />;
@@ -24,17 +32,45 @@ const Layout: React.FC<PropsWithChildren & LayoutOwnProps> = ({
   return (
     <main className="flex min-h-screen">
       {format === "search" && data && (
-        <SideBar><PreviousSearchSideBar handleShowPreviousSearch={handleShowPreviousSearch} previousSearches={data} /></SideBar>
+        <SideBar>
+          <PreviousSearchSideBar
+            handleShowPreviousSearch={handleShowPreviousSearch}
+            previousSearches={data}
+          />
+        </SideBar>
       )}
-      <div className="mx-auto flex flex-col w-full">
-        <header className="justify-between bg-gray-900 py-16 text-slate-100 px-0">
+      <div className="mx-auto flex w-full flex-col">
+        <header className="mb-10 justify-between border-b-2 border-b-gray-800 bg-gray-900 px-0 py-16 text-slate-100">
           <div className="container mx-auto flex justify-between px-10 md:px-40">
             <div>
               <h1 className="text-3xl">CityHopper</h1>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="relative sm:hidden">
+              <FaBars onClick={handleSetShowDropDown} className="scale-150" />
+              {showDropDown && (
+                <MobileDropdown classNames="self-center">
+                  {isSignedIn ? (
+                    <MobileDropdownOption>
+                      <SignOutButton />
+                    </MobileDropdownOption>
+                  ) : (
+                    <MobileDropdownOption>
+                      <SignInButton />
+                    </MobileDropdownOption>
+                  )}
+                  <MobileDropdownOption>
+                    <a
+                      href="https://github.com/jarrodmjack/CityHopper"
+                      target="_blank"
+                    >
+                      About
+                    </a>
+                  </MobileDropdownOption>
+                </MobileDropdown>
+              )}
+            </div>
+            <div className="hidden items-center gap-4 sm:flex">
               {isSignedIn && <SignOutButton />}
-              <span>Menu</span>
             </div>
           </div>
         </header>
@@ -42,9 +78,7 @@ const Layout: React.FC<PropsWithChildren & LayoutOwnProps> = ({
         <footer className="justify-self-end bg-white shadow dark:bg-gray-900">
           <div className="mx-auto w-full max-w-screen-xl p-4 md:py-8">
             <div className="sm:flex sm:items-center sm:justify-between">
-              <a
-                className="mb-4 flex items-center sm:mb-0"
-              >
+              <a className="mb-4 flex items-center sm:mb-0">
                 <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
                   CityHopper
                 </span>

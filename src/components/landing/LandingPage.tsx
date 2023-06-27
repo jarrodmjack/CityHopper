@@ -7,9 +7,18 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useState, type PropsWithChildren } from "react";
+import MobileDropdown from "../dropdown/mobile/MobileDropdown";
+import { FaBars } from "react-icons/fa";
+import MobileDropdownOption from "../dropdown/mobile/MobileDropdownOption";
 
 const LandingPage = () => {
   const { user, isLoaded: userIsLoaded, isSignedIn } = useUser();
+  const [showDropDown, setShowDropDown] = useState(false);
+
+  const handleSetShowDropDown = () => {
+    setShowDropDown(!showDropDown);
+  };
 
   return (
     <main className="flex min-h-screen">
@@ -19,9 +28,29 @@ const LandingPage = () => {
             <div>
               <h1 className="text-3xl">CityHopper</h1>
             </div>
-            <div className="flex items-center gap-4">
-              {isSignedIn && <SignOutButton />}
-              {/* <span>Menu</span> */}
+            <div className="relative">
+              <FaBars onClick={handleSetShowDropDown} className="scale-150" />
+              {showDropDown && (
+                <MobileDropdown classNames="self-center">
+                  {isSignedIn ? (
+                    <MobileDropdownOption>
+                      <SignOutButton />
+                    </MobileDropdownOption>
+                  ) : (
+                    <MobileDropdownOption>
+                      <SignInButton />
+                    </MobileDropdownOption>
+                  )}
+                  <MobileDropdownOption>
+                    <a
+                      href="https://github.com/jarrodmjack/CityHopper"
+                      target="_blank"
+                    >
+                      About
+                    </a>
+                  </MobileDropdownOption>
+                </MobileDropdown>
+              )}
             </div>
           </div>
         </header>
