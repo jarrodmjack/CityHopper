@@ -19,7 +19,7 @@ const Home: NextPage = () => {
   const [currentLocation, setCurrentLocation] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { data, isLoading: loadingProperties } =
+  const { data, isLoading: loadingSearchedProperties } =
     api.propertySearch.getPropertySearchesByUserId.useQuery({
       userId: user?.id || "",
     });
@@ -65,6 +65,7 @@ const Home: NextPage = () => {
     const matchingProperties = await fetchMatchingProperties(options);
     setCurrentLocation(options.location);
     if (matchingProperties && matchingProperties.length > 0) {
+      console.log("matching properties: ", matchingProperties);
       !isCreating &&
         mutate({
           userId: user.id,

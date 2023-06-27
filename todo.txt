@@ -2,3 +2,6 @@ check out date must be 1 day after checkin date
 fix property grid card layout when lots of content
 propagate checkin checkout
 fix adding search to previous search when no results
+
+
+Ongoing: Define types for params rather than using "any" wherever possible

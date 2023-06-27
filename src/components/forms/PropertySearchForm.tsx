@@ -75,7 +75,7 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
         }}
         className="grid grid-cols-2 gap-2 text-black lg:flex lg:items-center lg:gap-2"
       >
-        <div className="flex flex-col rounded-lg bg-white px-10 py-4">
+        <div className="flex flex-col rounded-lg bg-white px-10 py-4 gap-2">
           <label htmlFor="location" className="font-semibold">
             Location ( City, Country )
           </label>
@@ -120,9 +120,9 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
         >
           <DateRangePicker ranges={[dateRange]} onChange={handleSelectRange} />
         </Modal>
-        <div className="flex flex-col rounded-lg bg-white px-10 lg:py-2.5">
+        <div className="flex flex-col rounded-lg bg-white px-10 lg:py-2.5 gap-1.5">
           <label htmlFor="numOfAdults" className="font-semibold">
-            How many adults?
+            How many people?
           </label>
           <Select
             required={true}
