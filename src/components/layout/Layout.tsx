@@ -43,7 +43,6 @@ const Layout: React.FC<PropsWithChildren & LayoutOwnProps> = ({
           <div className="mx-auto w-full max-w-screen-xl p-4 md:py-8">
             <div className="sm:flex sm:items-center sm:justify-between">
               <a
-                href="https://flowbite.com/"
                 className="mb-4 flex items-center sm:mb-0"
               >
                 <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">

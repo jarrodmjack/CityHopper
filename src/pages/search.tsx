@@ -44,11 +44,22 @@ const Home: NextPage = () => {
     options: PropertySearchFormOptions
   ) => {
     const todaysDate = new Date().toISOString().split("T")[0];
+    const today = new Date();
+    let tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 15);
 
     if (options.checkIn < todaysDate!) {
       toast.error(
         "Check in date cannot be before todays date. Please try again"
       );
+      return;
+    }
+
+    if (options.checkOut <= options.checkIn) {
+      toast.error(
+        "Check out date must be at least one day after check in date. Please try again"
+      );
+
       return;
     }
 

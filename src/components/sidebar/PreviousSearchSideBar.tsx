@@ -27,7 +27,7 @@ const PreviousSearchSideBar: React.FC<PreviousSearchSideBarProps> = ({
   return (
     <div className="flex flex-col py-10">
       <h5 className="mb-10 text-xl">Previous searches</h5>
-      {previousSearches.map((previousSearch: any, i: number) => (
+      {previousSearches.length > 0 && previousSearches.map((previousSearch: any, i: number) => (
         <div key={previousSearch.id} className="flex items-center gap-2">
           <span>
             <FaSearch />

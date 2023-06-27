@@ -27,7 +27,7 @@ const LandingPage = () => {
         </header>
         <div className="flex-grow">
           <main className="container mx-auto py-8 text-slate-100">
-            <section className="justify-between flex flex-col gap-10 md:flex-row">
+            <section className="flex flex-col justify-between gap-10 md:flex-row">
               <section>
                 <section className="py-8">
                   <h2 className="text-2xl font-bold">
@@ -108,7 +108,9 @@ const LandingPage = () => {
               )}
               {user && isSignedIn && (
                 <Link href="/search">
-                  <span className="cursor-pointer rounded-md bg-blue-600 px-3 py-2 hover:bg-blue-800">Start searching</span>
+                  <span className="cursor-pointer rounded-md bg-blue-600 px-3 py-2 hover:bg-blue-800">
+                    Start searching
+                  </span>
                 </Link>
               )}
             </section>
@@ -117,15 +119,7 @@ const LandingPage = () => {
         <footer className="justify-self-end bg-white shadow dark:bg-gray-900">
           <div className="mx-auto w-full max-w-screen-xl p-4 md:py-8">
             <div className="sm:flex sm:items-center sm:justify-between">
-              <a
-                href="https://flowbite.com/"
-                className="mb-4 flex items-center sm:mb-0"
-              >
-                <img
-                  src="https://flowbite.com/docs/images/logo.svg"
-                  className="mr-3 h-8"
-                  alt="Flowbite Logo"
-                />
+              <a className="mb-4 flex items-center sm:mb-0">
                 <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
                   CityHopper
                 </span>
@@ -150,11 +144,7 @@ const LandingPage = () => {
             </div>
             <hr className="my-6 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-8" />
             <span className="block text-sm text-gray-500 dark:text-gray-400 sm:text-center">
-              © 2023{" "}
-              <a href="https://flowbite.com/" className="hover:underline">
-                CityHopper™
-              </a>
-              . All Rights Reserved.
+              © 2023 CityHopper™. All Rights Reserved.
             </span>
           </div>
         </footer>
