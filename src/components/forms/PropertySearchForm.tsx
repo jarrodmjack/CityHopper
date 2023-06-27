@@ -120,7 +120,7 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
         >
           <DateRangePicker ranges={[dateRange]} onChange={handleSelectRange} />
         </Modal>
-        <div className="flex flex-col rounded-lg bg-white px-10 lg:py-2.5 gap-1.5">
+        <div className="flex flex-col rounded-lg bg-white px-10 py-2.5 col-span-2 lg:py-2.5 gap-1.5">
           <label htmlFor="numOfAdults" className="font-semibold">
             How many people?
           </label>

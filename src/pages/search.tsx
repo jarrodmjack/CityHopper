@@ -16,7 +16,7 @@ const Home: NextPage = () => {
     []
   );
 
-  const [currentLocation, setCurrentLocation] = useState("");
+  // const [currentLocation, setCurrentLocation] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const { data, isLoading: loadingSearchedProperties } =
@@ -63,9 +63,8 @@ const Home: NextPage = () => {
 
     setIsLoading(true);
     const matchingProperties = await fetchMatchingProperties(options);
-    setCurrentLocation(options.location);
+    // setCurrentLocation(options.location); was being used for description but on hold now
     if (matchingProperties && matchingProperties.length > 0) {
-      console.log("matching properties: ", matchingProperties);
       !isCreating &&
         mutate({
           userId: user.id,

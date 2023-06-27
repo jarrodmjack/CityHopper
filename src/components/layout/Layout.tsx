@@ -27,7 +27,7 @@ const Layout: React.FC<PropsWithChildren & LayoutOwnProps> = ({
         <SideBar><PreviousSearchSideBar handleShowPreviousSearch={handleShowPreviousSearch} previousSearches={data} /></SideBar>
       )}
       <div className="mx-auto flex flex-col w-full">
-        <header className="justify-between bg-gray-900 py-16 text-slate-100 md:">
+        <header className="justify-between bg-gray-900 py-16 text-slate-100 px-0">
           <div className="container mx-auto flex justify-between px-10 md:px-40">
             <div>
               <h1 className="text-3xl">CityHopper</h1>
