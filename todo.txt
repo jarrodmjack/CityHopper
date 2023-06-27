@@ -1,4 +1,3 @@
-Continue working on implementing date range picker. Adjust the big search function to compare the 2 dates/format the dates (iso string, split, etc)
 check out date must be 1 day after checkin date
 fix property grid card layout when lots of content
 propagate checkin checkout
