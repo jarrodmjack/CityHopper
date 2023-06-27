@@ -2,7 +2,11 @@ import { useUser } from "@clerk/nextjs";
 import React, { useState } from "react";
 import { PropertySearchFormOptions } from "~/types/PropertySearchFormTypes";
 import Select from "react-select";
-import { toast } from "react-hot-toast";
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import { DateRangePicker } from "react-date-range";
+import Modal from "react-modal";
+import { FaCalendar } from "react-icons/fa";
 
 type PropertySearchFormProps = {
   handleFindMatchingProperties: (options: PropertySearchFormOptions) => void;
@@ -16,10 +20,48 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
   if (!user) return null;
   const [options, setOptions] = useState({
     location: "",
-    checkIn: "",
-    checkOut: "",
+    checkIn: new Date(),
+    checkOut: new Date(),
     numOfPeople: 1,
   });
+  const [dateRange, setDateRange] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: "selection",
+  });
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  const handleSelectRange = (range: any) => {
+    setDateRange({
+      startDate: range.selection.startDate,
+      endDate: range.selection.endDate,
+      key: "selection",
+    });
+    setOptions({
+      ...options,
+      checkIn: range.selection.startDate,
+      checkOut: range.selection.endDate,
+    });
+  };
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
 
   return (
     <div>
@@ -38,6 +80,7 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
             Location ( City, Country )
           </label>
           <input
+            required={true}
             onChange={(e) =>
               setOptions({ ...options, location: e.target.value })
             }
@@ -46,47 +89,37 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
             id="location"
             type="text"
             className="focus:outline-none"
-            required={true}
           />
         </div>
-        <div className="flex flex-col rounded-lg bg-white px-10 py-4">
-          <label htmlFor="checkInDate" className="font-semibold">
-            Check-in date
-          </label>
-          <input
-            onChange={(e) => {
-              const todaysDate = new Date().toISOString().split("T")[0];
-              const selectedCheckInDate = e.target.value;
+        <div className="flex items-center gap-4 rounded-lg bg-white p-4">
+          <div className="flex flex-col gap-2">
+            <span>
+              <span className="font-semibold">Check in: </span>
+              {options.checkIn
+                ? `${options.checkIn.toISOString().split("T")[0]}`
+                : "YYYY/MM/DD"}
+            </span>
+            <span>
+              <span className="font-semibold">Check out: </span>
+              {options.checkOut
+                ? `${options.checkOut.toISOString().split("T")[0]}`
+                : "YYYY/MM/DD"}
+            </span>
+          </div>
+          <button type="button" className="text-slate-100" onClick={openModal}>
+            <FaCalendar style={{ color: "black" }} />
+          </button>
+        </div>
 
-              if (selectedCheckInDate < todaysDate!) {
-                toast.error(
-                  "Checkin date cannot be before todays date. Please select a different date"
-                );
-                setOptions({ ...options, checkIn: selectedCheckInDate });
-              } else {
-                setOptions({ ...options, checkIn: selectedCheckInDate });
-              }
-            }}
-            id="checkInDate"
-            type="date"
-            className="focus:outline-none"
-            required={true}
-          />
-        </div>
-        <div className="flex flex-col rounded-lg bg-white px-10 py-4">
-          <label htmlFor="checkOutDate" className="font-semibold">
-            Check-out date
-          </label>
-          <input
-            onChange={(e) =>
-              setOptions({ ...options, checkOut: e.target.value })
-            }
-            id="checkOutDate"
-            type="date"
-            className="focus:outline-none"
-            required={true}
-          />
-        </div>
+        <Modal
+          ariaHideApp={false}
+          style={customStyles}
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          contentLabel="Example Modal"
+        >
+          <DateRangePicker ranges={[dateRange]} onChange={handleSelectRange} />
+        </Modal>
         <div className="flex flex-col rounded-lg bg-white px-10 lg:py-2.5">
           <label htmlFor="numOfAdults" className="font-semibold">
             How many adults?
@@ -99,7 +132,9 @@ const PropertySearchForm: React.FC<PropertySearchFormProps> = ({
               { value: 3, label: "3 people" },
               { value: 4, label: "4 people" },
             ]}
-            onChange={(option) => setOptions({...options, numOfPeople: option!.value})}
+            onChange={(option) =>
+              setOptions({ ...options, numOfPeople: option!.value })
+            }
           />
         </div>
         <button

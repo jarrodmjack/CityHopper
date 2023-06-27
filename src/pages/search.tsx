@@ -43,30 +43,28 @@ const Home: NextPage = () => {
   const handleFindMatchingProperties = async (
     options: PropertySearchFormOptions
   ) => {
-    const todaysDate = new Date().toISOString().split("T")[0];
+    if (!options.checkIn || !options.checkOut) {
+      toast.error("Please ensure all fields are filled out");
+      return;
+    }
+
     const today = new Date();
     let tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 15);
+    const intendedCheckIn = options.checkIn.toISOString().split("T")[0];
+    const todaysDate = new Date().toISOString().split("T")[0];
 
-    if (options.checkIn < todaysDate!) {
+    if (intendedCheckIn! < todaysDate!) {
       toast.error(
         "Check in date cannot be before todays date. Please try again"
       );
       return;
     }
 
-    if (options.checkOut <= options.checkIn) {
-      toast.error(
-        "Check out date must be at least one day after check in date. Please try again"
-      );
-
-      return;
-    }
-
     setIsLoading(true);
     const matchingProperties = await fetchMatchingProperties(options);
     setCurrentLocation(options.location);
-    if (matchingProperties) {
+    if (matchingProperties && matchingProperties.length > 0) {
       !isCreating &&
         mutate({
           userId: user.id,

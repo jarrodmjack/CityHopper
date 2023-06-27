@@ -27,3 +27,7 @@ body {
 *::-webkit-scrollbar-thumb {
   background-color: #042b55;
 }
+
+.rdrDefinedRangesWrapper { 
+  display: none
+}

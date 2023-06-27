@@ -3,7 +3,11 @@ import { PropertySearchFormOptions } from "~/types/PropertySearchFormTypes";
 export const fetchMatchingProperties = async (
   urlOptions: PropertySearchFormOptions
 ) => {
-  const url = `https://airbnb13.p.rapidapi.com/search-location?location=${urlOptions.location}&checkin=${urlOptions.checkIn}&checkout=${urlOptions.checkOut}&adults=${urlOptions.numOfPeople}&children=0&infants=0&pets=0&page=1&currency=USD`;
+
+  const checkIn = urlOptions.checkIn.toISOString().split('T')[0];
+  const checkOut = urlOptions.checkIn.toISOString().split('T')[0];
+
+  const url = `https://airbnb13.p.rapidapi.com/search-location?location=${urlOptions.location}&checkin=${checkIn}&checkout=${checkOut}&adults=${urlOptions.numOfPeople}&children=0&infants=0&pets=0&page=1&currency=USD`;
 
   const options = {
     method: "GET",

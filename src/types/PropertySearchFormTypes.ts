@@ -1,6 +1,6 @@
 export interface PropertySearchFormOptions {
     location: string
-    checkIn: string
-    checkOut: string
+    checkIn: Date
+    checkOut: Date
     numOfPeople: number | undefined
 }
