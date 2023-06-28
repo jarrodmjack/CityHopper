@@ -50,7 +50,7 @@ const Home: NextPage = () => {
 
     const today = new Date();
     let tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 15);
+    tomorrow.setDate(today.getDate() + 1);
     const intendedCheckIn = options.checkIn.toISOString().split("T")[0];
     const todaysDate = new Date().toISOString().split("T")[0];
 
